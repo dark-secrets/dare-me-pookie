@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dare Me 🎀 | Anonymous Dare Sender</title>
+<meta name="monetag" content="b35f63669937636a3a7966008332757c">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -72,7 +73,7 @@
     display: flex;
     justify-content: center;
   }
-  /* <!-- AD UNIT: Top Banner 728x90 --> */
+  /* */
   .ad-placeholder {
     background: rgba(255,255,255,0.22);
     border: 1.5px dashed rgba(255,110,180,0.35);
@@ -232,7 +233,6 @@
     display: flex;
     justify-content: center;
   }
-  /* <!-- AD UNIT: Mid Rectangle 300x250 --> */
 
   /* ── Success screen ── */
   .success-screen {
@@ -261,7 +261,6 @@
     display: none;
     justify-content: center;
   }
-  /* <!-- AD UNIT: Post-Submit Interstitial 300x250 --> */
 
   .send-another {
     margin-top: 20px;
@@ -309,21 +308,16 @@
 </head>
 <body>
 
-<!-- Blobs -->
 <div class="blob blob-1"></div>
 <div class="blob blob-2"></div>
 <div class="blob blob-3"></div>
 
 <div class="page-wrap">
 
-  <!-- ════════════════════════════════ -->
-  <!-- AD UNIT: Top Banner 728x90      -->
-  <!-- ════════════════════════════════ -->
   <div class="ad-top">
     <div class="ad-placeholder">[ Ad — Top Banner 728×90 ]</div>
   </div>
 
-  <!-- Hero -->
   <div class="hero">
     <div class="hero-ribbon">✨ 100% Anonymous</div>
     <h1>Dare me.<br><em>Anonymously.</em></h1>
@@ -331,7 +325,6 @@
        <span>I read every single one.</span></p>
   </div>
 
-  <!-- Main card -->
   <div class="card" id="mainCard">
     <div class="card-label">🎀 Drop your dare below</div>
     <textarea id="dareInput" placeholder="I dare you to..." maxlength="500"></textarea>
@@ -343,7 +336,6 @@
     </button>
   </div>
 
-  <!-- Success card (hidden until submit) -->
   <div class="card success-screen" id="successCard">
     <span class="success-icon">😈</span>
     <h2>Dare delivered.</h2>
@@ -351,16 +343,10 @@
     <button class="send-another" onclick="resetForm()">Send another dare →</button>
   </div>
 
-  <!-- ════════════════════════════════════ -->
-  <!-- AD UNIT: Post-Submit 300x250        -->
-  <!-- ════════════════════════════════════ -->
   <div class="ad-submit" id="adSubmit">
     <div class="ad-placeholder">[ Ad — Post-Submit 300×250 ]</div>
   </div>
 
-  <!-- ════════════════════════════════ -->
-  <!-- AD UNIT: Mid Rectangle 300x250  -->
-  <!-- ════════════════════════════════ -->
   <div class="ad-mid">
     <div class="ad-placeholder">[ Ad — Mid Rectangle 300×250 ]</div>
   </div>
@@ -410,9 +396,6 @@
       return;
     }
 
-    // ── Hook your form action / fetch here ──
-    // e.g. fetch('/submit', { method:'POST', body: JSON.stringify({ dare: input }) })
-
     const mainCard = document.getElementById('mainCard');
     const successCard = document.getElementById('successCard');
     const adSubmit = document.getElementById('adSubmit');
@@ -437,7 +420,6 @@
     mainCard.style.animation = 'fadeUp .4s ease forwards';
   }
 
-  // Hover copy swap on send button
   const btn = document.getElementById('sendBtn');
   btn.addEventListener('mouseenter', () => btn.textContent = 'You sure? 👀');
   btn.addEventListener('mouseleave', () => btn.textContent = 'Send the Dare 🔥');
