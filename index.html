@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dare Me 🎀 | Anonymous Dare Sender</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --rose:    #FFB6C1;
+    --lav:     #D8B4FE;
+    --cream:   #FFF5F0;
+    --pink:    #FF6EB4;
+    --deep:    #C026A0;
+    --glass:   rgba(255,255,255,0.18);
+    --border:  rgba(255,255,255,0.38);
+    --txt:     #5B2D6E;
+    --muted:   #A07CB8;
+  }
+
+  body {
+    min-height: 100vh;
+    font-family: 'Nunito', sans-serif;
+    background: linear-gradient(135deg, #FFD6E8 0%, #E9D5FF 40%, #FFF0F6 70%, #FFE4CC 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: hidden;
+    position: relative;
+    color: var(--txt);
+  }
+
+  /* ── Floating blobs ── */
+  .blob {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(72px);
+    opacity: 0.45;
+    pointer-events: none;
+    z-index: 0;
+    animation: float 8s ease-in-out infinite alternate;
+  }
+  .blob-1 { width: 420px; height: 420px; background: #FFB6C1; top: -80px;  left: -100px; animation-delay: 0s; }
+  .blob-2 { width: 360px; height: 360px; background: #D8B4FE; bottom: -60px; right: -80px; animation-delay: -3s; }
+  .blob-3 { width: 220px; height: 220px; background: #FDE68A; top: 40%;   left: 55%;   animation-delay: -5s; }
+
+  @keyframes float {
+    from { transform: translateY(0px) scale(1); }
+    to   { transform: translateY(28px) scale(1.04); }
+  }
+
+  /* ── Layout ── */
+  .page-wrap {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 560px;
+    padding: 24px 20px 48px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+
+  /* ── AD: Top Banner ── */
+  .ad-top {
+    width: 100%;
+    max-width: 728px;
+    margin-bottom: 24px;
+    display: flex;
+    justify-content: center;
+  }
+  /* <!-- AD UNIT: Top Banner 728x90 --> */
+  .ad-placeholder {
+    background: rgba(255,255,255,0.22);
+    border: 1.5px dashed rgba(255,110,180,0.35);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: .04em;
+  }
+  .ad-top .ad-placeholder    { width: 100%; height: 72px; }
+  .ad-mid .ad-placeholder    { width: 300px; height: 250px; }
+  .ad-submit .ad-placeholder { width: 300px; height: 250px; }
+
+  /* ── Hero text ── */
+  .hero { text-align: center; margin-bottom: 32px; }
+  .hero-ribbon {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--pink);
+    background: rgba(255,110,180,0.12);
+    border: 1px solid rgba(255,110,180,0.28);
+    border-radius: 99px;
+    padding: 4px 16px;
+    margin-bottom: 16px;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 7vw, 3.2rem);
+    font-weight: 700;
+    line-height: 1.12;
+    background: linear-gradient(135deg, #C026A0, #7C3AED, #FF6EB4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 12px;
+  }
+  .hero p {
+    font-size: 1rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .hero p span { color: var(--pink); font-weight: 700; }
+
+  /* ── Glass card ── */
+  .card {
+    width: 100%;
+    background: var(--glass);
+    backdrop-filter: blur(22px) saturate(1.6);
+    -webkit-backdrop-filter: blur(22px) saturate(1.6);
+    border: 1px solid var(--border);
+    border-radius: 28px;
+    padding: 36px 32px 32px;
+    box-shadow: 0 8px 40px rgba(192,38,160,0.1), 0 2px 8px rgba(0,0,0,0.06);
+    position: relative;
+    overflow: hidden;
+  }
+  .card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg, rgba(255,255,255,0.32) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .card-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+
+  textarea {
+    width: 100%;
+    min-height: 130px;
+    resize: vertical;
+    background: rgba(255,255,255,0.55);
+    border: 1.5px solid rgba(255,110,180,0.25);
+    border-radius: 16px;
+    padding: 16px 18px;
+    font-family: 'Nunito', sans-serif;
+    font-size: .97rem;
+    color: var(--txt);
+    outline: none;
+    transition: border-color .25s, box-shadow .25s;
+    line-height: 1.6;
+  }
+  textarea::placeholder { color: #C4A0D8; }
+  textarea:focus {
+    border-color: var(--pink);
+    box-shadow: 0 0 0 4px rgba(255,110,180,0.15);
+  }
+
+  /* ── Inspire button ── */
+  .btn-inspire {
+    margin-top: 10px;
+    background: none;
+    border: 1.5px solid rgba(255,110,180,0.35);
+    border-radius: 99px;
+    padding: 7px 18px;
+    font-family: 'Nunito', sans-serif;
+    font-size: .85rem;
+    font-weight: 700;
+    color: var(--pink);
+    cursor: pointer;
+    transition: background .2s, transform .15s;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .btn-inspire:hover {
+    background: rgba(255,110,180,0.1);
+    transform: scale(1.04);
+  }
+  .btn-inspire:active { transform: scale(.97); }
+
+  /* ── Send button ── */
+  .btn-send {
+    margin-top: 22px;
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(135deg, #FF6EB4, #C026A0);
+    border: none;
+    border-radius: 99px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #fff;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: transform .2s, box-shadow .2s;
+    box-shadow: 0 4px 20px rgba(192,38,160,0.32);
+    letter-spacing: .02em;
+  }
+  .btn-send::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 60%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+    transition: left .5s;
+  }
+  .btn-send:hover { transform: scale(1.03); box-shadow: 0 6px 28px rgba(192,38,160,0.42); }
+  .btn-send:hover::after { left: 160%; }
+  .btn-send:active { transform: scale(.98); }
+
+  /* ── AD: Mid Rectangle ── */
+  .ad-mid {
+    margin-top: 32px;
+    display: flex;
+    justify-content: center;
+  }
+  /* <!-- AD UNIT: Mid Rectangle 300x250 --> */
+
+  /* ── Success screen ── */
+  .success-screen {
+    display: none;
+    text-align: center;
+    animation: fadeUp .5s ease forwards;
+  }
+  .success-icon {
+    font-size: 3.5rem;
+    margin-bottom: 16px;
+    display: block;
+    animation: pop .4s cubic-bezier(.36,.07,.19,.97);
+  }
+  .success-screen h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: var(--deep);
+    margin-bottom: 10px;
+  }
+  .success-screen p { color: var(--muted); font-size: .97rem; line-height: 1.6; }
+
+  /* ── AD: Post-Submit ── */
+  .ad-submit {
+    margin-top: 28px;
+    display: none;
+    justify-content: center;
+  }
+  /* <!-- AD UNIT: Post-Submit Interstitial 300x250 --> */
+
+  .send-another {
+    margin-top: 20px;
+    background: none;
+    border: none;
+    color: var(--pink);
+    font-family: 'Nunito', sans-serif;
+    font-size: .9rem;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  /* ── Footer ── */
+  footer {
+    position: relative; z-index: 1;
+    margin-top: 12px;
+    font-size: .78rem;
+    color: var(--muted);
+    text-align: center;
+    padding-bottom: 24px;
+  }
+
+  /* ── Keyframes ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes pop {
+    0%   { transform: scale(.4); opacity: 0; }
+    70%  { transform: scale(1.2); }
+    100% { transform: scale(1);   opacity: 1; }
+  }
+  @keyframes cardOut {
+    to { opacity: 0; transform: scale(.94) translateY(-12px); }
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 480px) {
+    .card { padding: 28px 20px 24px; }
+    .ad-top .ad-placeholder { height: 56px; font-size: 10px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Blobs -->
+<div class="blob blob-1"></div>
+<div class="blob blob-2"></div>
+<div class="blob blob-3"></div>
+
+<div class="page-wrap">
+
+  <!-- ════════════════════════════════ -->
+  <!-- AD UNIT: Top Banner 728x90      -->
+  <!-- ════════════════════════════════ -->
+  <div class="ad-top">
+    <div class="ad-placeholder">[ Ad — Top Banner 728×90 ]</div>
+  </div>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-ribbon">✨ 100% Anonymous</div>
+    <h1>Dare me.<br><em>Anonymously.</em></h1>
+    <p>No name. No trace. Just the dare. 👀<br>
+       <span>I read every single one.</span></p>
+  </div>
+
+  <!-- Main card -->
+  <div class="card" id="mainCard">
+    <div class="card-label">🎀 Drop your dare below</div>
+    <textarea id="dareInput" placeholder="I dare you to..." maxlength="500"></textarea>
+    <div>
+      <button class="btn-inspire" onclick="randomDare()">🎲 Inspire me</button>
+    </div>
+    <button class="btn-send" id="sendBtn" onclick="submitDare()">
+      Send the Dare 🔥
+    </button>
+  </div>
+
+  <!-- Success card (hidden until submit) -->
+  <div class="card success-screen" id="successCard">
+    <span class="success-icon">😈</span>
+    <h2>Dare delivered.</h2>
+    <p>Sent. They have no idea it was you.<br>Let the chaos begin. 🎀</p>
+    <button class="send-another" onclick="resetForm()">Send another dare →</button>
+  </div>
+
+  <!-- ════════════════════════════════════ -->
+  <!-- AD UNIT: Post-Submit 300x250        -->
+  <!-- ════════════════════════════════════ -->
+  <div class="ad-submit" id="adSubmit">
+    <div class="ad-placeholder">[ Ad — Post-Submit 300×250 ]</div>
+  </div>
+
+  <!-- ════════════════════════════════ -->
+  <!-- AD UNIT: Mid Rectangle 300x250  -->
+  <!-- ════════════════════════════════ -->
+  <div class="ad-mid">
+    <div class="ad-placeholder">[ Ad — Mid Rectangle 300×250 ]</div>
+  </div>
+
+</div>
+
+<footer>Made with 💗 · 100% anonymous · no data stored</footer>
+
+<script>
+  const dares = [
+    "Text your crush right now and say 'I've been thinking about you 👀'",
+    "Post a thirst trap on your story for exactly 10 minutes then delete it.",
+    "Send a voice note to your best friend saying you love them dramatically.",
+    "DM someone you haven't talked to in a year with just '…'",
+    "Do a full dramatic lip sync in front of your mirror and record it.",
+    "Change your display name to something embarrassing for 24 hours.",
+    "Order the weirdest thing on the menu at the next place you eat.",
+    "Reply to your last Instagram story viewer with 'thanks for watching 😏'",
+    "Tell someone you know an honest compliment you've never said out loud.",
+    "Post your most unhinged photo from 3 years ago, no caption.",
+    "Call a friend and confess the last thing you lied to them about.",
+    "Set your ringtone to something chaotic for a whole week.",
+    "Wear an outfit tomorrow that's completely out of your comfort zone.",
+    "Reply to your boss/teacher with just a single emoji next time they message.",
+    "Serenade someone — in public — for at least 10 seconds. 🎤"
+  ];
+
+  function randomDare() {
+    const box = document.getElementById('dareInput');
+    const pick = dares[Math.floor(Math.random() * dares.length)];
+    box.value = '';
+    box.focus();
+    let i = 0;
+    const type = setInterval(() => {
+      box.value += pick[i++];
+      if (i >= pick.length) clearInterval(type);
+    }, 22);
+  }
+
+  function submitDare() {
+    const input = document.getElementById('dareInput').value.trim();
+    if (!input) {
+      const box = document.getElementById('dareInput');
+      box.style.borderColor = '#FF6EB4';
+      box.focus();
+      setTimeout(() => box.style.borderColor = '', 1200);
+      return;
+    }
+
+    // ── Hook your form action / fetch here ──
+    // e.g. fetch('/submit', { method:'POST', body: JSON.stringify({ dare: input }) })
+
+    const mainCard = document.getElementById('mainCard');
+    const successCard = document.getElementById('successCard');
+    const adSubmit = document.getElementById('adSubmit');
+
+    mainCard.style.animation = 'cardOut .35s ease forwards';
+    setTimeout(() => {
+      mainCard.style.display = 'none';
+      successCard.style.display = 'block';
+      adSubmit.style.display = 'flex';
+    }, 320);
+  }
+
+  function resetForm() {
+    const mainCard = document.getElementById('mainCard');
+    const successCard = document.getElementById('successCard');
+    const adSubmit = document.getElementById('adSubmit');
+    document.getElementById('dareInput').value = '';
+    successCard.style.display = 'none';
+    adSubmit.style.display = 'none';
+    mainCard.style.animation = '';
+    mainCard.style.display = 'block';
+    mainCard.style.animation = 'fadeUp .4s ease forwards';
+  }
+
+  // Hover copy swap on send button
+  const btn = document.getElementById('sendBtn');
+  btn.addEventListener('mouseenter', () => btn.textContent = 'You sure? 👀');
+  btn.addEventListener('mouseleave', () => btn.textContent = 'Send the Dare 🔥');
+</script>
+</body>
+</html>
