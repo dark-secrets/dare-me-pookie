@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dare Me 🎀 | Anonymous Dare Sender</title>
-<meta name="monetag" content="b35f63669937636a3a7966008332757c">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -58,36 +57,12 @@
     z-index: 1;
     width: 100%;
     max-width: 560px;
-    padding: 24px 20px 48px;
+    padding: 60px 20px 48px;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 0;
   }
-
-  /* ── AD: Top Banner ── */
-  .ad-top {
-    width: 100%;
-    max-width: 728px;
-    margin-bottom: 24px;
-    display: flex;
-    justify-content: center;
-  }
-  /* */
-  .ad-placeholder {
-    background: rgba(255,255,255,0.22);
-    border: 1.5px dashed rgba(255,110,180,0.35);
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 11px;
-    color: var(--muted);
-    letter-spacing: .04em;
-  }
-  .ad-top .ad-placeholder    { width: 100%; height: 72px; }
-  .ad-mid .ad-placeholder    { width: 300px; height: 250px; }
-  .ad-submit .ad-placeholder { width: 300px; height: 250px; }
 
   /* ── Hero text ── */
   .hero { text-align: center; margin-bottom: 32px; }
@@ -227,13 +202,6 @@
   .btn-send:hover::after { left: 160%; }
   .btn-send:active { transform: scale(.98); }
 
-  /* ── AD: Mid Rectangle ── */
-  .ad-mid {
-    margin-top: 32px;
-    display: flex;
-    justify-content: center;
-  }
-
   /* ── Success screen ── */
   .success-screen {
     display: none;
@@ -255,13 +223,6 @@
   }
   .success-screen p { color: var(--muted); font-size: .97rem; line-height: 1.6; }
 
-  /* ── AD: Post-Submit ── */
-  .ad-submit {
-    margin-top: 28px;
-    display: none;
-    justify-content: center;
-  }
-
   .send-another {
     margin-top: 20px;
     background: none;
@@ -278,7 +239,7 @@
   /* ── Footer ── */
   footer {
     position: relative; z-index: 1;
-    margin-top: 12px;
+    margin-top: 32px;
     font-size: .78rem;
     color: var(--muted);
     text-align: center;
@@ -302,7 +263,6 @@
   /* ── Responsive ── */
   @media (max-width: 480px) {
     .card { padding: 28px 20px 24px; }
-    .ad-top .ad-placeholder { height: 56px; font-size: 10px; }
   }
 </style>
 </head>
@@ -313,10 +273,6 @@
 <div class="blob blob-3"></div>
 
 <div class="page-wrap">
-
-  <div class="ad-top">
-    <div class="ad-placeholder">[ Ad — Top Banner 728×90 ]</div>
-  </div>
 
   <div class="hero">
     <div class="hero-ribbon">✨ 100% Anonymous</div>
@@ -341,14 +297,6 @@
     <h2>Dare delivered.</h2>
     <p>Sent. They have no idea it was you.<br>Let the chaos begin. 🎀</p>
     <button class="send-another" onclick="resetForm()">Send another dare →</button>
-  </div>
-
-  <div class="ad-submit" id="adSubmit">
-    <div class="ad-placeholder">[ Ad — Post-Submit 300×250 ]</div>
-  </div>
-
-  <div class="ad-mid">
-    <div class="ad-placeholder">[ Ad — Mid Rectangle 300×250 ]</div>
   </div>
 
 </div>
@@ -398,23 +346,19 @@
 
     const mainCard = document.getElementById('mainCard');
     const successCard = document.getElementById('successCard');
-    const adSubmit = document.getElementById('adSubmit');
 
     mainCard.style.animation = 'cardOut .35s ease forwards';
     setTimeout(() => {
       mainCard.style.display = 'none';
       successCard.style.display = 'block';
-      adSubmit.style.display = 'flex';
     }, 320);
   }
 
   function resetForm() {
     const mainCard = document.getElementById('mainCard');
     const successCard = document.getElementById('successCard');
-    const adSubmit = document.getElementById('adSubmit');
     document.getElementById('dareInput').value = '';
     successCard.style.display = 'none';
-    adSubmit.style.display = 'none';
     mainCard.style.animation = '';
     mainCard.style.display = 'block';
     mainCard.style.animation = 'fadeUp .4s ease forwards';
