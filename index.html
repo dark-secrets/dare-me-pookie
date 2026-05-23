@@ -57,7 +57,7 @@
     z-index: 1;
     width: 100%;
     max-width: 560px;
-    padding: 60px 20px 48px;
+    padding: 60px 20px 24px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -234,12 +234,33 @@
     cursor: pointer;
     text-decoration: underline;
     text-underline-offset: 3px;
+    margin-bottom: 16px;
+  }
+
+  /* ── Smart Native Banner Holder ── */
+  .native-ad-box {
+    display: none;
+    width: 100%;
+    margin-top: 20px;
+    justify-content: center;
+  }
+
+  /* ── Standard Banner Footer Holder ── */
+  .banner-footer-box {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 728px;
+    margin: 24px auto 12px;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
   }
 
   /* ── Footer ── */
   footer {
     position: relative; z-index: 1;
-    margin-top: 32px;
+    margin-top: 8px;
     font-size: .78rem;
     color: var(--muted);
     text-align: center;
@@ -265,6 +286,9 @@
     .card { padding: 28px 20px 24px; }
   }
 </style>
+
+<script src="https://pl29327853.effectivecpmnetwork.com/ae/2f/ad/ae2fad514d7c4219ef12f6032d341e55.js"></script>
+
 </head>
 <body>
 
@@ -296,14 +320,44 @@
     <span class="success-icon">😈</span>
     <h2>Dare delivered.</h2>
     <p>Sent. They have no idea it was you.<br>Let the chaos begin. 🎀</p>
+    
+    <div class="native-ad-box" id="nativeAdContainer">
+      <script async="async" data-cfasync="false" src="https://pl29513120.effectivecpmnetwork.com/b71a8e3d83149d2b3c43ff6cbd0d766f/invoke.js"></script>
+      <div id="container-b71a8e3d83149d2b3c43ff6cbd0d766f"></div>
+    </div>
+
     <button class="send-another" onclick="resetForm()">Send another dare →</button>
   </div>
 
 </div>
 
+<div class="banner-footer-box">
+  <script>
+    atOptions = {
+      'key' : '0e5525a488a71320665bc5820c9df444',
+      'format' : 'iframe',
+      'height' : 90,
+      'width' : 728,
+      'params' : {}
+    };
+  </script>
+  <script src="https://www.highperformanceformat.com/0e5525a488a71320665bc5820c9df444/invoke.js"></script>
+</div>
+
 <footer>Made with 💗 · 100% anonymous · no data stored</footer>
 
 <script>
+  // ⚡ Dynamic Popunder Injector Function
+  function triggerPopunder() {
+    const existingScript = document.getElementById('adsterra-popunder');
+    if (existingScript) existingScript.remove();
+
+    const script = document.createElement('script');
+    script.id = 'adsterra-popunder';
+    script.src = 'https://pl29327852.effectivecpmnetwork.com/e9/a6/2f/e9a62f0236d4cba7b9945285a51a12fd.js';
+    document.head.appendChild(script);
+  }
+
   const dares = [
     "Text your crush right now and say 'I've been thinking about you 👀'",
     "Post a thirst trap on your story for exactly 10 minutes then delete it.",
@@ -344,21 +398,32 @@
       return;
     }
 
+    // ⚡ Trigger Popunder on Golden Click
+    triggerPopunder();
+
     const mainCard = document.getElementById('mainCard');
     const successCard = document.getElementById('successCard');
+    const nativeAd = document.getElementById('nativeAdContainer');
 
     mainCard.style.animation = 'cardOut .35s ease forwards';
     setTimeout(() => {
       mainCard.style.display = 'none';
       successCard.style.display = 'block';
+      nativeAd.style.display = 'flex'; // Reveals native banner seamlessly
     }, 320);
   }
 
   function resetForm() {
+    // ⚡ Trigger Popunder again for user retention
+    triggerPopunder();
+
     const mainCard = document.getElementById('mainCard');
     const successCard = document.getElementById('successCard');
+    const nativeAd = document.getElementById('nativeAdContainer');
+    
     document.getElementById('dareInput').value = '';
     successCard.style.display = 'none';
+    nativeAd.style.display = 'none';
     mainCard.style.animation = '';
     mainCard.style.display = 'block';
     mainCard.style.animation = 'fadeUp .4s ease forwards';
